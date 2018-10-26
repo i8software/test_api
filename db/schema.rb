@@ -10,11 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_150055) do
+ActiveRecord::Schema.define(version: 2018_10_21_074551) do
 
-  create_table "oauth_access_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "resource_owner_id"
-    t.bigint "application_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
+
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "commenter_id"
+    t.uuid "geo_cache_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["geo_cache_id"], name: "index_comments_on_geo_cache_id"
+  end
+
+  create_table "geo_caches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "cacher_id"
+    t.string "message"
+    t.string "title"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cacher_id"], name: "index_geo_caches_on_cacher_id"
+  end
+
+  create_table "oauth_access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "resource_owner_id"
+    t.uuid "application_id"
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
@@ -28,7 +53,32 @@ ActiveRecord::Schema.define(version: 2018_10_19_150055) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "reactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "like"
+    t.integer "unlike"
+    t.uuid "reactor_id"
+    t.uuid "geo_cache_id"
+    t.uuid "comment_id"
+    t.uuid "reply_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_reactions_on_comment_id"
+    t.index ["geo_cache_id"], name: "index_reactions_on_geo_cache_id"
+    t.index ["reactor_id"], name: "index_reactions_on_reactor_id"
+    t.index ["reply_id"], name: "index_reactions_on_reply_id"
+  end
+
+  create_table "replies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "comment_id"
+    t.string "reply"
+    t.uuid "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_replies_on_comment_id"
+    t.index ["sender_id"], name: "index_replies_on_sender_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -45,5 +95,14 @@ ActiveRecord::Schema.define(version: 2018_10_19_150055) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "geo_caches", column: "geo_cache_id"
+  add_foreign_key "comments", "users", column: "commenter_id"
+  add_foreign_key "geo_caches", "users", column: "cacher_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "reactions", "comments"
+  add_foreign_key "reactions", "geo_caches", column: "geo_cache_id"
+  add_foreign_key "reactions", "replies"
+  add_foreign_key "reactions", "users", column: "reactor_id"
+  add_foreign_key "replies", "comments"
+  add_foreign_key "replies", "users", column: "sender_id"
 end

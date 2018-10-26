@@ -1,8 +1,8 @@
 class CreateDoorkeeperTables < ActiveRecord::Migration[5.2]
   def change
-    create_table :oauth_access_tokens do |t|
-      t.references :resource_owner
-      t.references :application
+    create_table :oauth_access_tokens, id: :uuid do |t|
+      t.references :resource_owner, type: :uuid
+      t.references :application, type: :uuid
 
       # If you use a custom token generator you may need to change this column
       # from string to text, so that it accepts tokens larger than 255

@@ -5,8 +5,8 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
-# Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+# Use postgres as the database for Active Record
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -19,7 +19,6 @@ gem 'puma', '~> 3.11'
 # Use oAuth
 gem 'devise'
 gem 'doorkeeper'
-gem 'cancancan'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
