@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_074551) do
+ActiveRecord::Schema.define(version: 2018_12_10_134802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "replies_count", default: 0
+    t.integer "likes_count", default: 0
+    t.integer "unlikes_count", default: 0
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
     t.index ["geo_cache_id"], name: "index_comments_on_geo_cache_id"
   end
@@ -34,6 +37,9 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
     t.decimal "lng", precision: 10, scale: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comments_count", default: 0
+    t.integer "likes_count", default: 0
+    t.integer "unlikes_count", default: 0
     t.index ["cacher_id"], name: "index_geo_caches_on_cacher_id"
   end
 
@@ -54,18 +60,14 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
   end
 
   create_table "reactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "like"
-    t.integer "unlike"
     t.uuid "reactor_id"
-    t.uuid "geo_cache_id"
-    t.uuid "comment_id"
-    t.uuid "reply_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_reactions_on_comment_id"
-    t.index ["geo_cache_id"], name: "index_reactions_on_geo_cache_id"
+    t.string "reacted_on_type"
+    t.uuid "reacted_on_id"
+    t.integer "reaction"
+    t.index ["reacted_on_type", "reacted_on_id"], name: "index_reactions_on_reacted_on_type_and_reacted_on_id"
     t.index ["reactor_id"], name: "index_reactions_on_reactor_id"
-    t.index ["reply_id"], name: "index_reactions_on_reply_id"
   end
 
   create_table "replies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -74,6 +76,8 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
     t.uuid "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "likes_count", default: 0
+    t.integer "unlikes_count", default: 0
     t.index ["comment_id"], name: "index_replies_on_comment_id"
     t.index ["sender_id"], name: "index_replies_on_sender_id"
   end
@@ -91,6 +95,14 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "geo_caches_count", default: 0
+    t.integer "comments_count", default: 0
+    t.integer "replies_count", default: 0
+    t.integer "likes_count", default: 0
+    t.integer "unlikes_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -99,9 +111,6 @@ ActiveRecord::Schema.define(version: 2018_10_21_074551) do
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "geo_caches", "users", column: "cacher_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
-  add_foreign_key "reactions", "comments"
-  add_foreign_key "reactions", "geo_caches", column: "geo_cache_id"
-  add_foreign_key "reactions", "replies"
   add_foreign_key "reactions", "users", column: "reactor_id"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users", column: "sender_id"
