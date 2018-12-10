@@ -1,6 +1,6 @@
-class GeocacheChannel < ApplicationCable::Channel
+class ReplyChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from "reply_#{params[:room]}_channel"
   end
 
   def unsubscribed
