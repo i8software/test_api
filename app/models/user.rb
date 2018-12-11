@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :reactions, dependent: :destroy
+
+  validates :username,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 3, maximum: 100 }
+
+  validates :first_name, length: { minimum: 3, maximum: 100 }, presence: true
+  validates :last_name, length: { minimum: 3, maximum: 100 }, presence: true
 end
