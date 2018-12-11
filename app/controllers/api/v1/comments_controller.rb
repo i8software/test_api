@@ -1,14 +1,14 @@
 class Api::V1::CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
-    render json: @comment
+    render json: @comment, serializer: CommentSerializer
   end
 
   def create
     @geo_cache = GeoCache.find(params[:geo_cache_id])
     @comment = @geo_cache.comments.build(resource_params)
     if @comment.save
-      render json: @comment, serializer: CommentSerializer
+      render json: @comment, serializer: CommentsSerializer
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -17,7 +17,7 @@ class Api::V1::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(resource_params)
-      render json: @comment
+      render json: @comment, serializer: CommentsSerializer
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
