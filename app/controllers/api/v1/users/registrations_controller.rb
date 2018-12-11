@@ -19,12 +19,13 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
         # set_flash_message! :notice, :signed_up
         # To avoid login comment out sign_up method
         # sign_up(resource_name, resource)
-        render json: resource # , location: after_sign_up_path_for(resource)
+        # render json: resource # , location: after_sign_up_path_for(resource)
       else
         # set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        render json: resource # , location: after_inactive_sign_up_path_for(resource)
+        # render json: resource # , location: after_inactive_sign_up_path_for(resource)
       end
+      render json: resource
     else
       clean_up_passwords resource
       set_minimum_password_length

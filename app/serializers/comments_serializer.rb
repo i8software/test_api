@@ -1,12 +1,11 @@
-class CommentSerializer < ActiveModel::Serializer
+class CommentsSerializer < ActiveModel::Serializer
 
   class CommenterSerializer < ActiveModel::Serializer
     attributes :id, :username
   end
 
-  attributes :id, :comment, :geo_cache_id, :likes, :unlikes
+  attributes :id, :comment, :geo_cache_id, :likes, :unlikes, :replies
   belongs_to :commenter, serializer: CommenterSerializer
-  has_many :replies, serializer: ReplySerializer
 
   def likes
     object.likes_count
@@ -14,5 +13,9 @@ class CommentSerializer < ActiveModel::Serializer
 
   def unlikes
     object.unlikes_count
+  end
+
+  def replies
+    object.replies_count
   end
 end

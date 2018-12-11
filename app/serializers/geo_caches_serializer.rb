@@ -1,11 +1,11 @@
-class GeoCacheSerializer < ActiveModel::Serializer
+class GeoCachesSerializer < ActiveModel::Serializer
+
   class CacherSerializer < ActiveModel::Serializer
     attributes :id, :username
   end
 
-  attributes :id, :lat, :lng, :title, :message, :likes, :unlikes
+  attributes :id, :lat, :lng, :title, :message, :likes, :unlikes, :comments
   belongs_to :cacher, serializer: CacherSerializer
-  has_many :comments, serializer: CommentsSerializer
 
   def likes
     object.likes_count
@@ -13,5 +13,9 @@ class GeoCacheSerializer < ActiveModel::Serializer
 
   def unlikes
     object.unlikes_count
+  end
+
+  def comments
+    object.comments_count
   end
 end
