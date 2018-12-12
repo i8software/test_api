@@ -50,11 +50,7 @@ This api has the following features:
 
 The api is hosted in the following url: https://blooming-cove-35281.herokuapp.com/
 
-Test details can be found here:
-
-[Tests](https://github.com/i8software/test_api/wiki)
-
-- [ReactJS](https://github.com/i8software/test_api/wiki/ReactJS)
+Test instructions can be found here: [Test Instructions](https://github.com/i8software/test_api/wiki)
 
 # Documentation
 
