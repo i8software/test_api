@@ -1,7 +1,7 @@
 class ReplySerializer < ActiveModel::Serializer
 
   class SenderSerializer < ActiveModel::Serializer
-    attributes :id, :username
+    attributes :id, :username, :avatar_url
   end
 
   attributes :id, :comment_id, :reply, :likes, :unlikes

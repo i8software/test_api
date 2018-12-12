@@ -1,7 +1,7 @@
 class GeoCachesSerializer < ActiveModel::Serializer
 
   class CacherSerializer < ActiveModel::Serializer
-    attributes :id, :username
+    attributes :id, :username, :avatar_url
   end
 
   attributes :id, :lat, :lng, :title, :message, :likes, :unlikes, :comments

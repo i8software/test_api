@@ -1,7 +1,7 @@
 class CommentsSerializer < ActiveModel::Serializer
 
   class CommenterSerializer < ActiveModel::Serializer
-    attributes :id, :username
+    attributes :id, :username, :avatar_url
   end
 
   attributes :id, :comment, :geo_cache_id, :likes, :unlikes, :replies

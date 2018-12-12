@@ -16,4 +16,13 @@ class User < ApplicationRecord
 
   validates :first_name, length: { minimum: 3, maximum: 100 }, presence: true
   validates :last_name, length: { minimum: 3, maximum: 100 }, presence: true
+
+  before_save :avatar_url
+
+  private
+
+  def avatar_url
+    gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+    self.avatar_url = "http://gravatar.com/avatar/#{gravatar_id}.png"
+  end
 end

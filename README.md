@@ -80,7 +80,8 @@ This channel provides updates on the geocaches, it doesn't have any rooms. It se
 	"comments": "// total comments for this cache - type integer",
 	"cacher": {
 		"id": "// UUID of the cacher - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -103,7 +104,8 @@ This channel provides updates on the comments for a geocache. It sends a json wi
 	"replies": "// total replies for this comment - type integer",
 	"commenter": {
 		"id": "// UUID of the commenter - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -125,7 +127,8 @@ This channel provides updates on the replies for a comment. It sends a json with
 	"unlikes": "// total unlikes for this reply - type integer",
 	"sender": {
 		"id": "// UUID of the sender - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -168,7 +171,8 @@ response:
     "geo_caches": "// type integer",
     "comments": "// type integer",
     "replies": "// type integer",
-    "reactions": "// type integer"
+    "reactions": "// type integer",
+	"avatar_url": "// type string"
 }
 ```
 
@@ -196,7 +200,8 @@ response:
     "refresh_token": "// type string",
     "created_at": "// type datetime obj",
     "email": "//type string",
-    "id": "UUID"
+    "id": "UUID",
+	"avatar_url": "// type string"
 }
 ```
 
@@ -223,7 +228,8 @@ response:
     "refresh_token": "// type string",
     "created_at": "// type datetime obj",
     "email": "//type string",
-    "id": "UUID"
+    "id": "UUID",
+	"avatar_url": "// type string"
 }
 ```
 
@@ -256,7 +262,8 @@ response:
 		"comments": "// total comments for this cache - type integer",
 		"cacher": {
 			"id": "// UUID of the cacher - type string",
-			"username": "// username - type string"
+			"username": "// username - type string",
+			"avatar_url": "// type string"
 		}
 	}
 ]
@@ -293,13 +300,15 @@ response:
 			"replies": "// total replies for this comment - type integer",
 			"commenter": {
 				"id": "// UUID of the commenter - type string",
-				"username": "// username - type string"
+				"username": "// username - type string",
+				"avatar_url": "// type string"
 			}
 		}
 	],
 	"cacher": {
 		"id": "// UUID of the cacher - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -342,13 +351,15 @@ response:
 			"replies": "// total replies for this comment - type integer",
 			"commenter": {
 				"id": "// UUID of the commenter - type string",
-				"username": "// username - type string"
+				"username": "// username - type string",
+				"avatar_url": "// type string"
 			}
 		}
 	],
 	"cacher": {
 		"id": "// UUID of the cacher - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -391,13 +402,15 @@ response:
 			"replies": "// total replies for this comment - type integer",
 			"commenter": {
 				"id": "// UUID of the commenter - type string",
-				"username": "// username - type string"
+				"username": "// username - type string",
+				"avatar_url": "// type string"
 			}
 		}
 	],
 	"cacher": {
 		"id": "// UUID of the cacher - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -470,7 +483,8 @@ response:
 		"reaction": "// like or unlike - type string",
 		"reactor": {
 			"id": "// UUID of reactor",
-			"username": "// username - type string"
+			"username": "// username - type string",
+			"avatar_url": "// type string"
 		}
 	}
 ]
@@ -506,13 +520,15 @@ response:
 			"unlikes": "// total unlikes for this reply - type integer",
 			"sender": {
 				"id": "// UUID of the sender - type string",
-				"username": "// username - type string"
+				"username": "// username - type string",
+				"avatar_url": "// type string"
 			}
 		}
 	],
 	"commenter": {
 		"id": "// UUID of the commenter - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -543,7 +559,8 @@ response:
 	"replies": "// total replies for this comment - type integer",
 	"commenter": {
 		"id": "// UUID of the commenter - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -574,7 +591,8 @@ response:
 	"replies": "// total replies for this comment - type integer",
 	"commenter": {
 		"id": "// UUID of the commenter - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -648,7 +666,8 @@ response:
 		"reaction": "// like or unlike - type string",
 		"reactor": {
 			"id": "// UUID of reactor",
-			"username": "// username - type string"
+			"username": "// username - type string",
+			"avatar_url": "// type string"
 		}
 	}
 ]
@@ -677,7 +696,8 @@ response:
 	"unlikes": "// total unlikes for this reply - type integer",
 	"sender": {
 		"id": "// UUID of the sender - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -707,7 +727,8 @@ response:
 	"unlikes": "// total unlikes for this reply - type integer",
 	"sender": {
 		"id": "// UUID of the sender - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -737,7 +758,8 @@ response:
 	"unlikes": "// total unlikes for this reply - type integer",
 	"sender": {
 		"id": "// UUID of the sender - type string",
-		"username": "// username - type string"
+		"username": "// username - type string",
+		"avatar_url": "// type string"
 	}
 }
 ```
@@ -811,7 +833,8 @@ response:
 		"reaction": "// like or unlike - type string",
 		"reactor": {
 			"id": "// UUID of reactor",
-			"username": "// username - type string"
+			"username": "// username - type string",
+			"avatar_url": "// type string"
 		}
 	}
 ]

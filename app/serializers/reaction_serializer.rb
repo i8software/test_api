@@ -1,7 +1,7 @@
 class ReactionSerializer < ActiveModel::Serializer
 
   class ReactorSerializer < ActiveModel::Serializer
-    attributes :id, :username
+    attributes :id, :username, :avatar_url
   end
 
   attributes :id, :reaction

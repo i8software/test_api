@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :first_name, :last_name, :geo_caches, :comments, :replies, :reactions
+  attributes :id, :username, :email, :first_name, :last_name, :geo_caches, :comments, :replies, :reactions, :avatar_url
 
   def geo_caches
     object.geo_caches_count
