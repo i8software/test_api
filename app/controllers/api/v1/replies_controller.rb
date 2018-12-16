@@ -5,7 +5,7 @@ class Api::V1::RepliesController < ApplicationController
   end
 
   def create
-    @commeny = Comment.find(params[:comment_id])
+    @comment = Comment.find(params[:comment_id])
     @reply = @comment.replies.build(resource_params)
     if @reply.save
       render json: @reply, serializer: ReplySerializer
