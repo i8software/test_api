@@ -28,7 +28,7 @@ class Api::V1::ReactionsController < ApplicationController
   private
 
   def resource_parent
-    return GeoCache.find(params[:geo_cache_id]) if params[:geo_cache_id]
+    return GeoCache.find(params[:geo_cach_id]) if params[:geo_cach_id]
     return Comment.find(params[:comment_id]) if params[:comment_id]
 
     Reply.find(params[:reply_id])

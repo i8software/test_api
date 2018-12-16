@@ -5,7 +5,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    @geo_cache = GeoCache.find(params[:geo_cache_id])
+    @geo_cache = GeoCache.find(params[:geo_cach_id])
     @comment = @geo_cache.comments.build(resource_params)
     if @comment.save
       render json: @comment, serializer: CommentsSerializer

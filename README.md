@@ -48,9 +48,9 @@ This api has the following features:
 - reply to a comment
 - like/unlike a geocache/comment/reply
 
-The api is hosted in the following url: https://blooming-cove-35281.herokuapp.com/
+The api is hosted in the following url (Base URL): https://blooming-cove-35281.herokuapp.com/
 
-Test instructions can be found here: [Test Instructions](https://github.com/i8software/test_api/wiki)
+Test instructions can be found in the  [Wikis](https://github.com/i8software/test_api/wiki) page.
 
 # Documentation
 
