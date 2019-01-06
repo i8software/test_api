@@ -56,6 +56,8 @@ Test instructions can be found in the  [Wikis](https://github.com/i8software/tes
 
 ## Websockets
 
+**Websocket endpoint**: '/cable'
+
 This API provides three channels:
 
 ### GeoCache Channel
